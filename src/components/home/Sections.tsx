@@ -81,86 +81,99 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-        {/* Logo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-4xl glass border border-yellow-500/30 rounded-3xl px-6 sm:px-10 md:px-14 py-10 md:py-12 shadow-2xl shadow-black/40"
         >
-          <div className="logo-emblem w-32 h-32 md:w-40 md:h-40 mx-auto">
-            <Image
-              src="/doglogo.jpg"
-              alt="Road Dog Logo"
-              width={160}
-              height={160}
-              className="rounded-full object-cover"
-              priority
-            />
+          <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+              {/* Logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="shrink-0"
+              >
+                <div className="logo-emblem w-28 h-28 md:w-36 md:h-36">
+                  <Image
+                    src="/doglogo.jpg"
+                    alt="Road Dog Logo"
+                    width={144}
+                    height={144}
+                    className="rounded-full object-cover"
+                    priority
+                  />
+                </div>
+              </motion.div>
+
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center gap-3 glass px-6 py-3 rounded-full text-yellow-300 border border-yellow-500/30"
+              >
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Truck className="w-5 h-5" />
+                </motion.div>
+                <span className="text-sm font-semibold tracking-wide">The Open Road Awaits</span>
+              </motion.div>
+            </div>
+
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-6xl md:text-8xl font-brand gradient-text mb-2 pb-2 text-shadow-gold"
+                style={{ paddingBottom: '0.1em' }}
+              >
+                Road Dog
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-4xl md:text-5xl font-brand text-red-500 mb-8 text-shadow-red"
+              >
+                Companion
+              </motion.p>
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed"
+            >
+              Join our network of companion riders and experience the adventure of
+              long-haul trucking across America. <span className="text-yellow-400">Safe</span>, <span className="text-yellow-400">vetted</span>, <span className="text-yellow-400">professional</span>.
+            </motion.p>
           </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-3 glass px-6 py-3 rounded-full text-yellow-300 mb-10"
-        >
           <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center"
           >
-            <Truck className="w-5 h-5" />
+            <Link
+              href="/apply"
+              className="btn-premium inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-bold text-lg group"
+            >
+              Apply as Rider
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <button className="glass inline-flex items-center justify-center gap-3 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all border-2 border-yellow-500/40 hover:border-yellow-400/60 hover:scale-105">
+              Learn More
+            </button>
           </motion.div>
-          <span className="text-sm font-medium tracking-wide">The Open Road Awaits</span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-6xl md:text-8xl font-brand gradient-text mb-4 pb-2 text-shadow-gold"
-          style={{ paddingBottom: '0.1em' }}
-        >
-          Road Dog
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-4xl md:text-5xl font-brand text-red-500 mb-10 text-shadow-red"
-        >
-          Companion
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-14 leading-relaxed"
-        >
-          Join our network of companion riders and experience the adventure of
-          long-haul trucking across America. <span className="text-yellow-400">Safe</span>, <span className="text-yellow-400">vetted</span>, <span className="text-yellow-400">professional</span>.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center"
-        >
-          <Link
-            href="/apply"
-            className="btn-premium inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-bold text-lg group"
-          >
-            Apply as Rider
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <button className="glass inline-flex items-center justify-center gap-3 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all border-2 border-yellow-500/40 hover:border-yellow-400/60 hover:scale-105">
-            Learn More
-          </button>
-        </motion.div>
 
         {/* Stats */}
         <motion.div
@@ -185,6 +198,7 @@ export function HeroSection() {
               <p className="text-yellow-400 text-sm mt-2 font-semibold">{stat.label}</p>
             </motion.div>
           ))}
+        </motion.div>
         </motion.div>
       </div>
 
