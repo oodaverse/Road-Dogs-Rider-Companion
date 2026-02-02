@@ -77,8 +77,17 @@ CREATE TABLE IF NOT EXISTS rider_applications (
 
 -- Create storage bucket for documents
 INSERT INTO storage.buckets (id, name, public)
-VALUES ('rider-documents', 'rider-documents', false)
+VALUES ('rider-documents', 'rider-documents', true)
 ON CONFLICT (id) DO NOTHING;
+
+-- Storage policies for rider-documents bucket
+-- Allow anyone to upload files (for public form submission)
+CREATE POLICY "Anyone can upload documents" ON storage.objects
+  FOR INSERT WITH CHECK (bucket_id = 'rider-documents');
+
+-- Allow anyone to read files (for admin viewing)
+CREATE POLICY "Anyone can view documents" ON storage.objects
+  FOR SELECT USING (bucket_id = 'rider-documents');
 
 -- Set up Row Level Security (RLS)
 ALTER TABLE rider_applications ENABLE ROW LEVEL SECURITY;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
@@ -24,11 +24,19 @@ import {
   MapPin,
   Shield,
   Lock,
+  ExternalLink,
+  Image,
 } from 'lucide-react';
 import { supabase, type RiderApplication } from '@/lib/supabase';
 import { formatDate, formatPhoneNumber } from '@/lib/utils';
 
 type ApplicationStatus = 'all' | 'pending' | 'approved' | 'rejected' | 'under_review';
+
+interface DocumentUrls {
+  idDocument: string | null;
+  healthInsurance: string | null;
+  liabilityInsurance: string | null;
+}
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,6 +50,8 @@ export default function AdminPage() {
   const [statusFilter, setStatusFilter] = useState<ApplicationStatus>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [updating, setUpdating] = useState(false);
+  const [documentUrls, setDocumentUrls] = useState<DocumentUrls>({ idDocument: null, healthInsurance: null, liabilityInsurance: null });
+  const [loadingDocs, setLoadingDocs] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,6 +62,60 @@ export default function AdminPage() {
     } else {
       setAuthError('Invalid credentials');
     }
+  };
+
+  // Function to get signed URL for a document
+  const getSignedUrl = async (publicUrl: string): Promise<string | null> => {
+    try {
+      // Extract the file path from the public URL
+      const urlParts = publicUrl.split('/rider-documents/');
+      if (urlParts.length < 2) return publicUrl;
+      
+      const filePath = urlParts[1];
+      
+      const { data, error } = await supabase.storage
+        .from('rider-documents')
+        .createSignedUrl(filePath, 3600); // 1 hour expiry
+      
+      if (error) {
+        console.error('Error creating signed URL:', error);
+        return publicUrl; // Fall back to public URL
+      }
+      
+      return data.signedUrl;
+    } catch (error) {
+      console.error('Error getting signed URL:', error);
+      return publicUrl;
+    }
+  };
+
+  // Load document URLs when an application is selected
+  const loadDocumentUrls = useCallback(async (app: RiderApplication) => {
+    setLoadingDocs(true);
+    const urls: DocumentUrls = { idDocument: null, healthInsurance: null, liabilityInsurance: null };
+    
+    try {
+      if (app.id_document_url) {
+        urls.idDocument = await getSignedUrl(app.id_document_url);
+      }
+      if (app.health_insurance_document_url) {
+        urls.healthInsurance = await getSignedUrl(app.health_insurance_document_url);
+      }
+      if (app.liability_insurance_document_url) {
+        urls.liabilityInsurance = await getSignedUrl(app.liability_insurance_document_url);
+      }
+    } catch (error) {
+      console.error('Error loading document URLs:', error);
+    }
+    
+    setDocumentUrls(urls);
+    setLoadingDocs(false);
+  }, []);
+
+  // Handle selecting an application
+  const handleSelectApplication = (app: RiderApplication) => {
+    setSelectedApplication(app);
+    loadDocumentUrls(app);
   };
 
   useEffect(() => {
@@ -366,7 +430,7 @@ export default function AdminPage() {
                       </td>
                       <td className="px-6 py-4 text-right">
                         <button
-                          onClick={() => setSelectedApplication(app)}
+                          onClick={() => handleSelectApplication(app)}
                           className="inline-flex items-center gap-1 text-orange-500 hover:text-orange-600 font-medium text-sm"
                         >
                           <Eye className="w-4 h-4" />
@@ -628,50 +692,106 @@ export default function AdminPage() {
                   </div>
                 </section>
 
-                {/* Documents */}
-                {(selectedApplication.id_document_url || selectedApplication.health_insurance_document_url) && (
-                  <section>
-                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                      <Download className="w-5 h-5 text-orange-500" />
-                      Uploaded Documents
-                    </h3>
-                    <div className="flex flex-wrap gap-3">
-                      {selectedApplication.id_document_url && (
-                        <a
-                          href={selectedApplication.id_document_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-100 transition-colors"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View ID Document
-                        </a>
-                      )}
-                      {selectedApplication.health_insurance_document_url && (
-                        <a
-                          href={selectedApplication.health_insurance_document_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View Health Insurance
-                        </a>
-                      )}
-                      {selectedApplication.liability_insurance_document_url && (
-                        <a
-                          href={selectedApplication.liability_insurance_document_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-100 transition-colors"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View Liability Insurance
-                        </a>
-                      )}
+                {/* Documents Section - Always show if any document exists */}
+                <section>
+                  <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <Download className="w-5 h-5 text-orange-500" />
+                    Uploaded Documents
+                  </h3>
+                  
+                  {loadingDocs ? (
+                    <div className="flex items-center gap-2 text-gray-500">
+                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      Loading documents...
                     </div>
-                  </section>
-                )}
+                  ) : (
+                    <div className="space-y-4">
+                      {/* ID Document */}
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="bg-blue-100 p-2 rounded-lg">
+                              <Image className="w-5 h-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-800">Government ID</p>
+                              <p className="text-sm text-gray-500">Driver's License, State ID, or Passport</p>
+                            </div>
+                          </div>
+                          {documentUrls.idDocument ? (
+                            <a
+                              href={documentUrls.idDocument}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              View Document
+                            </a>
+                          ) : (
+                            <span className="text-gray-400 text-sm italic">Not uploaded</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Health Insurance Document */}
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="bg-green-100 p-2 rounded-lg">
+                              <Shield className="w-5 h-5 text-green-600" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-800">Health Insurance Card</p>
+                              <p className="text-sm text-gray-500">Proof of health insurance coverage</p>
+                            </div>
+                          </div>
+                          {documentUrls.healthInsurance ? (
+                            <a
+                              href={documentUrls.healthInsurance}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              View Document
+                            </a>
+                          ) : (
+                            <span className="text-gray-400 text-sm italic">Not uploaded</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Liability Insurance Document */}
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="bg-purple-100 p-2 rounded-lg">
+                              <Shield className="w-5 h-5 text-purple-600" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-800">Liability Insurance</p>
+                              <p className="text-sm text-gray-500">Optional liability coverage document</p>
+                            </div>
+                          </div>
+                          {documentUrls.liabilityInsurance ? (
+                            <a
+                              href={documentUrls.liabilityInsurance}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              View Document
+                            </a>
+                          ) : (
+                            <span className="text-gray-400 text-sm italic">Not uploaded (optional)</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </section>
 
                 {/* Action Buttons */}
                 <section className="border-t border-gray-200 pt-6">
