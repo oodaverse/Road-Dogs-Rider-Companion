@@ -178,6 +178,8 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer 4s linear infinite;
+  padding-bottom: 0.15em;
+  display: inline-block;
 }
 
 .gradient-text-red {

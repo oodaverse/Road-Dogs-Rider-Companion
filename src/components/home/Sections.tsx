@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Truck,
   Users,
@@ -80,10 +81,29 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="mb-8"
+        >
+          <div className="logo-emblem w-32 h-32 md:w-40 md:h-40 mx-auto">
+            <Image
+              src="/doglogo.jpg"
+              alt="Road Dog Logo"
+              width={160}
+              height={160}
+              className="rounded-full object-cover"
+              priority
+            />
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           className="inline-flex items-center gap-3 glass px-6 py-3 rounded-full text-yellow-300 mb-10"
         >
           <motion.div
@@ -98,8 +118,9 @@ export function HeroSection() {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-6xl md:text-8xl font-brand gradient-text mb-4 text-shadow-gold"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-6xl md:text-8xl font-brand gradient-text mb-4 pb-2 text-shadow-gold"
+          style={{ paddingBottom: '0.1em' }}
         >
           Road Dog
         </motion.h1>
@@ -107,7 +128,7 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="text-4xl md:text-5xl font-brand text-red-500 mb-10 text-shadow-red"
         >
           Companion
@@ -116,7 +137,7 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-14 leading-relaxed"
         >
           Join our network of companion riders and experience the adventure of
@@ -126,7 +147,7 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-6 justify-center"
         >
           <Link
