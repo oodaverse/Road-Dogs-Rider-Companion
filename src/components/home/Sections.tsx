@@ -161,7 +161,7 @@ export function HeroSection() {
               <p className="text-3xl md:text-5xl font-bold gradient-text">
                 {stat.number}
               </p>
-              <p className="text-gray-300 text-sm mt-2 font-medium">{stat.label}</p>
+              <p className="text-yellow-400 text-sm mt-2 font-semibold">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -293,10 +293,10 @@ export function FeaturesSection() {
               >
                 <feature.icon className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-yellow-400 mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-300">{feature.description}</p>
+              <p className="text-gray-200">{feature.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -389,10 +389,10 @@ export function ProcessSection() {
                   </span>
                   <span className="text-3xl">{item.icon}</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mt-4 mb-3 group-hover:text-yellow-400 transition-colors">
+                <h3 className="text-xl font-bold text-yellow-400 mt-4 mb-3 group-hover:text-yellow-300 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-gray-300 leading-relaxed">{item.description}</p>
+                <p className="text-gray-200 leading-relaxed">{item.description}</p>
               </div>
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 z-10">
@@ -460,7 +460,7 @@ export function RequirementsSection() {
                   className="flex items-center gap-4 glass-light p-4 rounded-xl hover:border-yellow-500/50 transition-all"
                 >
                   <span className="text-2xl">{req.icon}</span>
-                  <span className="text-gray-200 font-medium">{req.text}</span>
+                  <span className="text-yellow-400 font-medium">{req.text}</span>
                 </motion.div>
               ))}
             </div>
