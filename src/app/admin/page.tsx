@@ -206,49 +206,53 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-black to-gray-900 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4 relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md"
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl shadow-2xl p-10 w-full max-w-md border border-yellow-500/20 relative"
         >
-          <div className="text-center mb-8">
-            <div className="bg-gradient-to-r from-red-600 to-red-700 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 border-yellow-500/50">
-              <Lock className="w-8 h-8 text-white" />
+          <div className="text-center mb-10">
+            <div className="logo-emblem w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+              <Lock className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-800">Admin Login</h1>
-            <p className="text-gray-600 mt-2">Road Dog Companion</p>
+            <h1 className="text-3xl font-brand gradient-text">Admin Portal</h1>
+            <p className="text-gray-400 mt-3 font-medium">Road Dog Companion</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+              <label className="block text-sm font-semibold text-gray-300 mb-2">Username</label>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none text-gray-900"
+                className="w-full px-5 py-4 rounded-xl bg-gray-700/50 border border-yellow-500/20 focus:ring-2 focus:ring-yellow-500/30 focus:border-yellow-500/50 outline-none text-white placeholder-gray-500"
                 placeholder="Enter username"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <label className="block text-sm font-semibold text-gray-300 mb-2">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none text-gray-900"
+                className="w-full px-5 py-4 rounded-xl bg-gray-700/50 border border-yellow-500/20 focus:ring-2 focus:ring-yellow-500/30 focus:border-yellow-500/50 outline-none text-white placeholder-gray-500"
                 placeholder="Enter password"
               />
             </div>
             {authError && (
-              <p className="text-red-500 text-sm text-center">{authError}</p>
+              <p className="text-red-400 text-sm text-center font-medium">{authError}</p>
             )}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all border border-yellow-500/30"
+              className="btn-premium w-full py-4 rounded-xl font-bold text-lg"
             >
-              Login
+              Login to Dashboard
             </button>
           </form>
         </motion.div>

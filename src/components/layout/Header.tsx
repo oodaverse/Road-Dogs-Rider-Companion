@@ -10,27 +10,31 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-yellow-500/30">
+    <header className="fixed top-0 left-0 right-0 z-50 glass">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <Link href="/" className="flex items-center gap-3">
+        <div className="flex justify-between items-center h-24">
+          <Link href="/" className="flex items-center gap-4 group">
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.08, rotate: 3 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
               className="logo-emblem"
             >
               <Image
                 src="/doglogo.jpg"
                 alt="Road Dog Logo"
-                width={56}
-                height={56}
+                width={64}
+                height={64}
                 className="rounded-full object-cover"
               />
             </motion.div>
             <div className="flex flex-col">
-              <span className="font-bold text-2xl text-yellow-400">
+              <motion.span 
+                className="font-brand text-3xl md:text-4xl gradient-text tracking-wide"
+                whileHover={{ scale: 1.02 }}
+              >
                 Road Dog
-              </span>
-              <span className="font-brand text-red-500 text-sm -mt-1">
+              </motion.span>
+              <span className="font-brand text-xl md:text-2xl text-red-500 -mt-2 tracking-wide text-shadow-red">
                 Companion
               </span>
             </div>
@@ -40,39 +44,44 @@ export function Header() {
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="/"
-              className="text-gray-200 hover:text-yellow-400 transition-colors font-medium"
+              className="text-gray-200 hover:text-yellow-400 transition-all duration-300 font-medium relative group"
             >
               Home
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link
               href="/apply"
-              className="text-gray-200 hover:text-yellow-400 transition-colors font-medium"
+              className="text-gray-200 hover:text-yellow-400 transition-all duration-300 font-medium relative group"
             >
               Apply Now
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link
               href="/admin"
-              className="text-gray-200 hover:text-yellow-400 transition-colors font-medium"
+              className="text-gray-200 hover:text-yellow-400 transition-all duration-300 font-medium relative group"
             >
               Admin
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
-            <Link
-              href="/apply"
-              className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-red-500/25 transition-all border border-yellow-500/30"
-            >
-              Get Started
-            </Link>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                href="/apply"
+                className="btn-premium text-white px-8 py-3 rounded-full font-semibold inline-block"
+              >
+                Get Started
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-yellow-400"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-white" />
+              <X className="w-7 h-7" />
             ) : (
-              <Menu className="w-6 h-6 text-white" />
+              <Menu className="w-7 h-7" />
             )}
           </button>
         </div>
@@ -82,33 +91,33 @@ export function Header() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden py-4 border-t border-yellow-500/30"
+            className="md:hidden py-6 border-t border-yellow-500/20"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-5">
               <Link
                 href="/"
-                className="text-gray-200 hover:text-yellow-400 transition-colors font-medium"
+                className="text-gray-200 hover:text-yellow-400 transition-all duration-300 font-medium text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/apply"
-                className="text-gray-200 hover:text-yellow-400 transition-colors font-medium"
+                className="text-gray-200 hover:text-yellow-400 transition-all duration-300 font-medium text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Apply Now
               </Link>
               <Link
                 href="/admin"
-                className="text-gray-200 hover:text-yellow-400 transition-colors font-medium"
+                className="text-gray-200 hover:text-yellow-400 transition-all duration-300 font-medium text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Admin
               </Link>
               <Link
                 href="/apply"
-                className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-lg font-semibold text-center border border-yellow-500/30"
+                className="btn-premium text-white px-6 py-3 rounded-full font-semibold text-center mt-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Get Started
@@ -123,81 +132,94 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white py-12 border-t border-yellow-500/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-gradient-to-b from-black to-[#0d0d0d] text-white py-16 border-t border-yellow-500/20 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-red-500/5 rounded-full blur-3xl"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-4 mb-6">
               <div className="logo-emblem">
                 <Image
                   src="/doglogo.jpg"
                   alt="Road Dog Logo"
-                  width={48}
-                  height={48}
+                  width={56}
+                  height={56}
                   className="rounded-full object-cover"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-xl text-yellow-400">
+                <span className="font-brand text-3xl gradient-text">
                   Road Dog
                 </span>
-                <span className="font-brand text-red-500 text-xs -mt-1">
+                <span className="font-brand text-xl text-red-500 -mt-1">
                   Companion
                 </span>
               </div>
             </div>
-            <p className="text-gray-400 text-sm max-w-md">
+            <p className="text-gray-400 text-sm max-w-md leading-relaxed">
               Road Dog Companion connects licensed truck drivers with vetted
               companions for long-haul routes across the United States. Making the open
               road a little less lonely.
             </p>
+            <div className="divider-gold w-32 mt-6"></div>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-yellow-400">Quick Links</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
+            <h4 className="font-semibold mb-6 text-yellow-400 text-lg">Quick Links</h4>
+            <ul className="space-y-3 text-gray-400 text-sm">
               <li>
-                <Link href="/" className="hover:text-yellow-400 transition-colors">
-                  Home
+                <Link href="/" className="hover:text-yellow-400 transition-all duration-300 hover:translate-x-1 inline-block">
+                  → Home
                 </Link>
               </li>
               <li>
-                <Link href="/apply" className="hover:text-yellow-400 transition-colors">
-                  Apply as Rider
+                <Link href="/apply" className="hover:text-yellow-400 transition-all duration-300 hover:translate-x-1 inline-block">
+                  → Apply as Rider
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-yellow-400 transition-colors">
-                  For Drivers
+                <Link href="#" className="hover:text-yellow-400 transition-all duration-300 hover:translate-x-1 inline-block">
+                  → For Drivers
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-yellow-400 transition-colors">
-                  FAQ
+                <Link href="#" className="hover:text-yellow-400 transition-all duration-300 hover:translate-x-1 inline-block">
+                  → FAQ
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-yellow-400">Contact</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>support@road-dog.com</li>
-              <li>1-800-ROAD-DOG</li>
-              <li>Mon-Fri: 8AM-6PM EST</li>
+            <h4 className="font-semibold mb-6 text-yellow-400 text-lg">Contact</h4>
+            <ul className="space-y-3 text-gray-400 text-sm">
+              <li className="flex items-center gap-2">
+                <span className="text-yellow-500">✉</span> support@road-dog.com
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-yellow-500">☎</span> 1-800-ROAD-DOG
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-yellow-500">◷</span> Mon-Fri: 8AM-6PM EST
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="divider-gold mt-12 mb-8"></div>
+        
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Road Dog Companion. All rights reserved.
+            © {new Date().getFullYear()} <span className="text-yellow-500/70">Road Dog Companion</span>. All rights reserved.
           </p>
-          <div className="flex gap-6 text-gray-500 text-sm">
-            <Link href="#" className="hover:text-white transition-colors">
+          <div className="flex gap-8 text-gray-500 text-sm">
+            <Link href="#" className="hover:text-yellow-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="#" className="hover:text-yellow-400 transition-colors">
               Terms of Service
             </Link>
           </div>

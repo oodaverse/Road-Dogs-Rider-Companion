@@ -9,19 +9,24 @@ export const metadata: Metadata = {
 
 export default function ApplyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
       <Header />
       
-      <div className="pt-24 pb-16">
+      <div className="pt-28 pb-20">
         {/* Hero Banner */}
-        <div className="bg-gradient-to-r from-black to-gray-800 py-16 mb-8">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">
+        <div className="relative py-20 mb-12 overflow-hidden">
+          {/* Background effects */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+          
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+            <h1 className="text-5xl md:text-7xl font-brand gradient-text mb-6 text-shadow-gold">
               Rider Application
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Complete the form below to apply for the Road Dog Companion
-              program. All fields marked with <span className="text-red-400">*</span> are required.
+            <div className="divider-gold w-24 mx-auto mb-8" />
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Complete the form below to apply for the <span className="text-yellow-400 font-semibold">Road Dog Companion</span> program. All fields marked with <span className="text-red-400 font-bold">*</span> are required.
             </p>
           </div>
         </div>
