@@ -181,13 +181,13 @@ export default function AdminPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'approved':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-green-600 text-white border-green-500';
       case 'rejected':
-        return 'bg-red-100 text-red-800 border-red-200';
+        return 'bg-red-600 text-white border-red-500';
       case 'under_review':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-yellow-500 text-black border-yellow-400';
       default:
-        return 'bg-amber-100 text-amber-800 border-amber-200';
+        return 'bg-yellow-400 text-black border-yellow-300';
     }
   };
 
