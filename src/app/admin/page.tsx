@@ -206,18 +206,18 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-black to-navy-900 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-gradient-to-br from-black to-gray-900 flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md"
         >
           <div className="text-center mb-8">
-            <div className="bg-gradient-to-r from-orange-500 to-orange-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div className="bg-gradient-to-r from-red-600 to-red-700 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 border-yellow-500/50">
               <Lock className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-gray-800">Admin Login</h1>
-            <p className="text-gray-600 mt-2">Road-Dogs: Rider Companion</p>
+            <p className="text-gray-600 mt-2">Road Dog Companion</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -227,7 +227,7 @@ export default function AdminPage() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none text-gray-900"
                 placeholder="Enter username"
               />
             </div>
@@ -237,7 +237,7 @@ export default function AdminPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none text-gray-900"
                 placeholder="Enter password"
               />
             </div>
@@ -246,7 +246,7 @@ export default function AdminPage() {
             )}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
+              className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all border border-yellow-500/30"
             >
               Login
             </button>
@@ -257,23 +257,23 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-900">
+    <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="bg-black border-b border-navy-700 sticky top-0 z-40">
+      <header className="bg-black border-b border-yellow-500/30 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-2 rounded-lg">
+              <div className="bg-gradient-to-r from-red-600 to-red-700 p-2 rounded-lg border border-yellow-500/50">
                 <Truck className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="font-bold text-white">Road-Dogs Admin</h1>
+                <h1 className="font-bold text-yellow-400">Road Dog Admin</h1>
                 <p className="text-xs text-gray-400">Application Management</p>
               </div>
             </div>
             <button
               onClick={() => setIsAuthenticated(false)}
-              className="text-gray-300 hover:text-white text-sm font-medium"
+              className="text-gray-300 hover:text-yellow-400 text-sm font-medium"
             >
               Logout
             </button>
@@ -295,7 +295,7 @@ export default function AdminPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-navy-800 rounded-xl p-6 shadow-sm border border-navy-700"
+              className="bg-gray-800 rounded-xl p-6 shadow-sm border border-yellow-500/20"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -311,7 +311,7 @@ export default function AdminPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-navy-800 rounded-xl p-4 shadow-sm border border-navy-700 mb-6">
+        <div className="bg-gray-800 rounded-xl p-4 shadow-sm border border-yellow-500/20 mb-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -320,7 +320,7 @@ export default function AdminPage() {
                 placeholder="Search by name or email..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-navy-600 bg-navy-900 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-700 bg-gray-900 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none"
               />
             </div>
             <div className="flex gap-2">
@@ -328,7 +328,7 @@ export default function AdminPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value as ApplicationStatus)}
-                  className="appearance-none bg-navy-900 text-white px-4 py-2 pr-10 rounded-lg border border-navy-600 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none cursor-pointer"
+                  className="appearance-none bg-gray-900 text-white px-4 py-2 pr-10 rounded-lg border border-gray-700 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none cursor-pointer"
                 >
                   <option value="all">All Status</option>
                   <option value="pending">Pending</option>
@@ -340,7 +340,7 @@ export default function AdminPage() {
               </div>
               <button
                 onClick={fetchApplications}
-                className="bg-navy-900 p-2 rounded-lg hover:bg-navy-700 transition-colors border border-navy-600"
+                className="bg-gray-900 p-2 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
                 title="Refresh"
               >
                 <RefreshCw className={`w-5 h-5 text-gray-300 ${loading ? 'animate-spin' : ''}`} />
@@ -350,10 +350,10 @@ export default function AdminPage() {
         </div>
 
         {/* Applications Table */}
-        <div className="bg-navy-800 rounded-xl shadow-sm border border-navy-700 overflow-hidden">
+        <div className="bg-gray-800 rounded-xl shadow-sm border border-yellow-500/20 overflow-hidden">
           {loading ? (
             <div className="p-12 text-center">
-              <RefreshCw className="w-8 h-8 text-orange-500 animate-spin mx-auto mb-4" />
+              <RefreshCw className="w-8 h-8 text-yellow-400 animate-spin mx-auto mb-4" />
               <p className="text-gray-300">Loading applications...</p>
             </div>
           ) : filteredApplications.length === 0 ? (
@@ -369,7 +369,7 @@ export default function AdminPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-navy-900 border-b border-navy-700">
+                <thead className="bg-gray-900 border-b border-gray-700">
                   <tr>
                     <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                       Applicant
@@ -391,9 +391,9 @@ export default function AdminPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-navy-700">
+                <tbody className="divide-y divide-gray-700">
                   {filteredApplications.map((app) => (
-                    <tr key={app.id} className="hover:bg-navy-700/50 transition-colors">
+                    <tr key={app.id} className="hover:bg-gray-700/50 transition-colors">
                       <td className="px-6 py-4">
                         <div>
                           <p className="font-semibold text-white">
@@ -431,7 +431,7 @@ export default function AdminPage() {
                       <td className="px-6 py-4 text-right">
                         <button
                           onClick={() => handleSelectApplication(app)}
-                          className="inline-flex items-center gap-1 text-orange-500 hover:text-orange-600 font-medium text-sm"
+                          className="inline-flex items-center gap-1 text-yellow-400 hover:text-yellow-300 font-medium text-sm"
                         >
                           <Eye className="w-4 h-4" />
                           View
@@ -464,7 +464,7 @@ export default function AdminPage() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="sticky top-0 bg-gradient-to-r from-navy-800 to-navy-900 px-8 py-6 rounded-t-2xl">
+              <div className="sticky top-0 bg-gradient-to-r from-gray-800 to-gray-900 px-8 py-6 rounded-t-2xl">
                 <div className="flex justify-between items-start">
                   <div>
                     <h2 className="text-2xl font-bold text-white">
@@ -498,7 +498,7 @@ export default function AdminPage() {
                 {/* Personal Information */}
                 <section>
                   <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Users className="w-5 h-5 text-orange-500" />
+                    <Users className="w-5 h-5 text-yellow-500" />
                     Personal Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
@@ -534,7 +534,7 @@ export default function AdminPage() {
                 {/* Emergency Contact */}
                 <section>
                   <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Phone className="w-5 h-5 text-orange-500" />
+                    <Phone className="w-5 h-5 text-yellow-500" />
                     Emergency Contact
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-lg">
@@ -556,7 +556,7 @@ export default function AdminPage() {
                 {/* Background Check */}
                 <section>
                   <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-orange-500" />
+                    <Shield className="w-5 h-5 text-yellow-500" />
                     Background Information
                   </h3>
                   <div className="bg-gray-50 p-4 rounded-lg space-y-3">
@@ -617,7 +617,7 @@ export default function AdminPage() {
                 {/* Motivation */}
                 <section>
                   <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-orange-500" />
+                    <FileText className="w-5 h-5 text-yellow-500" />
                     Motivation & Experience
                   </h3>
                   <div className="bg-gray-50 p-4 rounded-lg space-y-4">
@@ -651,7 +651,7 @@ export default function AdminPage() {
                 {/* Insurance */}
                 <section>
                   <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-orange-500" />
+                    <Shield className="w-5 h-5 text-yellow-500" />
                     Insurance Information
                   </h3>
                   <div className="bg-gray-50 p-4 rounded-lg space-y-4">
@@ -695,7 +695,7 @@ export default function AdminPage() {
                 {/* Documents Section - Always show if any document exists */}
                 <section>
                   <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Download className="w-5 h-5 text-orange-500" />
+                    <Download className="w-5 h-5 text-yellow-500" />
                     Uploaded Documents
                   </h3>
                   

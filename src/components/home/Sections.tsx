@@ -30,7 +30,7 @@ const staggerContainer = {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-navy-900 to-black">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -39,7 +39,7 @@ export function HeroSection() {
             y: [0, -50, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -47,11 +47,11 @@ export function HeroSection() {
             y: [0, 50, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+          className="absolute bottom-20 right-10 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
         />
         
         {/* Road lines animation */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy-900/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900/50 to-transparent" />
         <motion.div
           animate={{ x: ['0%', '-100%'] }}
           transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
@@ -60,7 +60,7 @@ export function HeroSection() {
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="w-24 h-2 bg-orange-500/30 mx-4 rounded-full"
+              className="w-24 h-2 bg-yellow-500/30 mx-4 rounded-full"
             />
           ))}
         </motion.div>
@@ -71,7 +71,7 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 bg-orange-500/20 backdrop-blur-sm px-4 py-2 rounded-full text-orange-300 mb-8"
+          className="inline-flex items-center gap-2 bg-yellow-500/20 backdrop-blur-sm px-4 py-2 rounded-full text-yellow-300 mb-8"
         >
           <Truck className="w-5 h-5" />
           <span className="text-sm font-medium">The Open Road Awaits</span>
@@ -81,18 +81,18 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-bold text-white mb-6"
+          className="text-5xl md:text-7xl font-bold text-yellow-400 mb-2"
         >
-          Road-<span className="text-orange-400">Dogs</span>
+          Road Dog
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-2xl md:text-3xl text-orange-300 font-semibold mb-4"
+          className="text-3xl md:text-4xl font-brand text-red-500 mb-8"
         >
-          Rider Companion Program
+          Companion
         </motion.p>
 
         <motion.p
@@ -113,12 +113,12 @@ export function HeroSection() {
         >
           <Link
             href="/apply"
-            className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-orange-500/30 transition-all hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-red-500/30 transition-all hover:scale-105 border border-yellow-500/30"
           >
             Apply as Rider
             <ArrowRight className="w-5 h-5" />
           </Link>
-          <button className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all border border-white/20">
+          <button className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all border border-yellow-500/30">
             Learn More
           </button>
         </motion.div>
@@ -136,7 +136,7 @@ export function HeroSection() {
             { number: '98%', label: 'Satisfaction' },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <p className="text-3xl md:text-4xl font-bold text-orange-400">
+              <p className="text-3xl md:text-4xl font-bold text-yellow-400">
                 {stat.number}
               </p>
               <p className="text-gray-400 text-sm">{stat.label}</p>
@@ -155,7 +155,7 @@ export function HeroSection() {
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-orange-400 rounded-full"
+            className="w-1.5 h-1.5 bg-yellow-400 rounded-full"
           />
         </div>
       </motion.div>
@@ -210,7 +210,7 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section className="py-24 bg-navy-900">
+    <section className="py-24 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="initial"
@@ -221,7 +221,7 @@ export function FeaturesSection() {
         >
           <motion.p
             variants={fadeInUp}
-            className="text-orange-500 font-semibold mb-4"
+            className="text-yellow-400 font-semibold mb-4"
           >
             WHY CHOOSE US
           </motion.p>
@@ -229,7 +229,7 @@ export function FeaturesSection() {
             variants={fadeInUp}
             className="text-4xl md:text-5xl font-bold text-white mb-4"
           >
-            The Road-Dogs Difference
+            The Road Dog Difference
           </motion.h2>
           <motion.p
             variants={fadeInUp}
@@ -252,7 +252,7 @@ export function FeaturesSection() {
               key={index}
               variants={fadeInUp}
               whileHover={{ y: -5 }}
-              className="bg-navy-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-navy-700"
+              className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-yellow-500/20"
             >
               <div
                 className={`w-14 h-14 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center mb-6`}
@@ -311,7 +311,7 @@ export function ProcessSection() {
         >
           <motion.p
             variants={fadeInUp}
-            className="text-orange-400 font-semibold mb-4"
+            className="text-yellow-400 font-semibold mb-4"
           >
             HOW IT WORKS
           </motion.p>
@@ -322,7 +322,7 @@ export function ProcessSection() {
             Your Journey Starts Here
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-gray-300 max-w-2xl mx-auto">
-            Getting started is easy. Follow these simple steps to become a Road-Dogs
+            Getting started is easy. Follow these simple steps to become a Road Dog
             companion rider.
           </motion.p>
         </motion.div>
@@ -340,8 +340,8 @@ export function ProcessSection() {
               variants={fadeInUp}
               className="relative"
             >
-              <div className="bg-navy-900 rounded-2xl p-8 h-full border border-navy-700 hover:border-orange-500/50 transition-colors">
-                <span className="text-6xl font-bold text-orange-500/20">
+              <div className="bg-gray-900 rounded-2xl p-8 h-full border border-yellow-500/20 hover:border-yellow-500/50 transition-colors">
+                <span className="text-6xl font-bold text-yellow-500/20">
                   {item.step}
                 </span>
                 <h3 className="text-xl font-bold text-white mt-4 mb-3">
@@ -350,7 +350,7 @@ export function ProcessSection() {
                 <p className="text-gray-300">{item.description}</p>
               </div>
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-orange-500/30" />
+                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-yellow-500/30" />
               )}
             </motion.div>
           ))}
@@ -373,7 +373,7 @@ export function RequirementsSection() {
   ];
 
   return (
-    <section className="py-24 bg-navy-900">
+    <section className="py-24 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -382,7 +382,7 @@ export function RequirementsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-orange-500 font-semibold mb-4">REQUIREMENTS</p>
+            <p className="text-yellow-400 font-semibold mb-4">REQUIREMENTS</p>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               What We Look For
             </h2>
@@ -416,17 +416,17 @@ export function RequirementsSection() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-8 md:p-12">
+            <div className="bg-gradient-to-br from-red-600 to-red-700 rounded-3xl p-8 md:p-12 border border-yellow-500/30">
               <h3 className="text-2xl font-bold text-white mb-4">
                 Ready to Get Started?
               </h3>
-              <p className="text-orange-100 mb-8">
+              <p className="text-red-100 mb-8">
                 Join hundreds of riders who have already experienced the adventure
                 of cross-country trucking. Apply today and start your journey!
               </p>
               <Link
                 href="/apply"
-                className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-4 rounded-xl font-bold hover:bg-orange-50 transition-colors"
+                className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold hover:bg-yellow-300 transition-colors"
               >
                 Start Application
                 <ArrowRight className="w-5 h-5" />
@@ -435,7 +435,7 @@ export function RequirementsSection() {
 
             {/* Decorative elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-black rounded-2xl -z-10" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-orange-600 rounded-2xl -z-10" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-yellow-500 rounded-2xl -z-10" />
           </motion.div>
         </div>
       </div>
@@ -445,12 +445,12 @@ export function RequirementsSection() {
 
 export function CTASection() {
   return (
-    <section className="py-24 bg-gradient-to-r from-black to-navy-900 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-r from-black to-gray-900 relative overflow-hidden">
       {/* Background Animation */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
-        className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] bg-orange-500/5 rounded-full"
+        className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] bg-yellow-500/5 rounded-full"
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -460,17 +460,17 @@ export function CTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Truck className="w-16 h-16 text-orange-400 mx-auto mb-8" />
+          <Truck className="w-16 h-16 text-yellow-400 mx-auto mb-8" />
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Your Adventure Awaits
           </h2>
           <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-            Don&apos;t just dream about the open road—experience it. Join Road-Dogs
+            Don&apos;t just dream about the open road—experience it. Join Road Dog
             today and discover America from behind the wheel of an 18-wheeler.
           </p>
           <Link
             href="/apply"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-orange-500/30 transition-all hover:scale-105"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-5 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-red-500/30 transition-all hover:scale-105 border border-yellow-500/30"
           >
             Apply Now — It&apos;s Free
             <ArrowRight className="w-6 h-6" />

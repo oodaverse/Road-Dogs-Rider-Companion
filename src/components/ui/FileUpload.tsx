@@ -84,14 +84,14 @@ export function FileUpload({
     if (file.type.startsWith('image/')) {
       return <Image className="w-8 h-8 text-blue-500" />;
     }
-    return <FileText className="w-8 h-8 text-orange-500" />;
+    return <FileText className="w-8 h-8 text-yellow-500" />;
   };
 
   return (
     <div className="space-y-2">
       <label className="block text-sm font-medium text-gray-700">
         {label}
-        {required && <span className="text-orange-500 ml-1">*</span>}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
 
       <AnimatePresence mode="wait">
@@ -137,9 +137,9 @@ export function FileUpload({
             onClick={() => inputRef.current?.click()}
             className={cn(
               'relative p-8 border-2 border-dashed rounded-lg cursor-pointer transition-all duration-200',
-              'hover:border-orange-400 hover:bg-orange-50/50',
+              'hover:border-yellow-400 hover:bg-yellow-50/50',
               isDragging
-                ? 'border-orange-500 bg-orange-50'
+                ? 'border-yellow-500 bg-yellow-50'
                 : 'border-gray-300 bg-gray-50/50',
               error && 'border-red-500'
             )}
@@ -159,12 +159,12 @@ export function FileUpload({
                 <Upload
                   className={cn(
                     'w-10 h-10 mb-3',
-                    isDragging ? 'text-orange-500' : 'text-gray-400'
+                    isDragging ? 'text-yellow-500' : 'text-gray-400'
                   )}
                 />
               </motion.div>
               <p className="text-sm text-gray-600">
-                <span className="font-semibold text-orange-500">Click to upload</span>
+                <span className="font-semibold text-yellow-600">Click to upload</span>
                 {' '}or drag and drop
               </p>
               <p className="text-xs text-gray-400 mt-1">

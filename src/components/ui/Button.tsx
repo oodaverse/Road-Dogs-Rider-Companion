@@ -31,11 +31,11 @@ export function Button({
 }: ButtonProps) {
   const variants = {
     primary:
-      'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40',
+      'bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 border border-yellow-500/30',
     secondary:
-      'bg-navy-800 text-white hover:bg-navy-700 shadow-lg shadow-navy-800/25',
+      'bg-gray-800 text-white hover:bg-gray-700 shadow-lg shadow-gray-800/25',
     outline:
-      'border-2 border-orange-500 text-orange-500 hover:bg-orange-50',
+      'border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-50',
     ghost:
       'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
   };

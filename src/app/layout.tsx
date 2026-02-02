@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Road-Dogs: Rider Companion | Apply to Ride",
-  description: "Join the Road-Dogs Rider Companion program. Travel across America with professional truck drivers. Safe, vetted, and adventurous.",
+  title: "Road Dog Companion | Apply to Ride",
+  description: "Join the Road Dog Companion program. Travel across America with professional truck drivers. Safe, vetted, and adventurous.",
 };
 
 export default function RootLayout({

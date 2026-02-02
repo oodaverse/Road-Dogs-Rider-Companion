@@ -20,7 +20,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       >
         <label className="block text-sm font-medium text-gray-700 mb-1.5">
           {label}
-          {props.required && <span className="text-orange-500 ml-1">*</span>}
+          {props.required && <span className="text-red-500 ml-1">*</span>}
         </label>
         <div className="relative">
           {icon && (
@@ -32,7 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             className={cn(
               'w-full px-4 py-3 rounded-lg border transition-all duration-200',
-              'focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none',
+              'focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none',
               'bg-white/80 backdrop-blur-sm text-gray-900 placeholder:text-gray-400',
               icon && 'pl-10',
               error
@@ -74,13 +74,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       >
         <label className="block text-sm font-medium text-gray-700 mb-1.5">
           {label}
-          {props.required && <span className="text-orange-500 ml-1">*</span>}
+          {props.required && <span className="text-red-500 ml-1">*</span>}
         </label>
         <textarea
           ref={ref}
           className={cn(
             'w-full px-4 py-3 rounded-lg border transition-all duration-200 min-h-[120px] resize-y',
-            'focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none',
+            'focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none',
             'bg-white/80 backdrop-blur-sm text-gray-900 placeholder:text-gray-400',
             error
               ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500'
@@ -121,13 +121,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       >
         <label className="block text-sm font-medium text-gray-700 mb-1.5">
           {label}
-          {props.required && <span className="text-orange-500 ml-1">*</span>}
+          {props.required && <span className="text-red-500 ml-1">*</span>}
         </label>
         <select
           ref={ref}
           className={cn(
             'w-full px-4 py-3 rounded-lg border transition-all duration-200 appearance-none',
-            'focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none',
+            'focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none',
             'bg-white/80 backdrop-blur-sm cursor-pointer text-gray-900',
             error
               ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500'
@@ -183,8 +183,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               type="checkbox"
               className={cn(
                 'w-5 h-5 rounded border-2 transition-all duration-200 cursor-pointer',
-                'checked:bg-orange-500 checked:border-orange-500',
-                'focus:ring-2 focus:ring-orange-500/20 outline-none',
+                'checked:bg-yellow-500 checked:border-yellow-500',
+                'focus:ring-2 focus:ring-yellow-500/20 outline-none',
                 error ? 'border-red-500' : 'border-gray-300',
                 className
               )}

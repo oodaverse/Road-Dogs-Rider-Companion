@@ -28,16 +28,16 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
                   scale: currentStep >= step.id ? 1 : 0.8,
                   backgroundColor:
                     currentStep > step.id
-                      ? '#f97316'
+                      ? '#eab308'
                       : currentStep === step.id
-                      ? '#1e3a5f'
+                      ? '#dc2626'
                       : '#e5e7eb',
                 }}
                 transition={{ duration: 0.3 }}
                 className={cn(
                   'w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg z-10 shadow-lg',
-                  currentStep > step.id && 'bg-orange-500',
-                  currentStep === step.id && 'bg-navy-800 ring-4 ring-orange-500/30',
+                  currentStep > step.id && 'bg-yellow-500',
+                  currentStep === step.id && 'bg-red-600 ring-4 ring-yellow-500/30',
                   currentStep < step.id && 'bg-gray-300 text-gray-500'
                 )}
               >
@@ -75,7 +75,7 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
                     width: currentStep > step.id ? '100%' : '0%',
                   }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className="h-full bg-gradient-to-r from-orange-500 to-orange-400"
+                  className="h-full bg-gradient-to-r from-yellow-500 to-yellow-400"
                 />
               </div>
             )}
