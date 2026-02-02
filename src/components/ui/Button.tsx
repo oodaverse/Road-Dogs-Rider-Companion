@@ -14,7 +14,7 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
-  onClick?: () => void;
+  onClick?: () => void | Promise<void>;
 }
 
 export function Button({
@@ -46,10 +46,16 @@ export function Button({
     lg: 'px-8 py-4 text-lg',
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick && !disabled && !loading) {
+      onClick();
+    }
+  };
+
   return (
     <motion.button
       type={type}
-      onClick={onClick}
+      onClick={handleClick}
       whileHover={{ scale: disabled || loading ? 1 : 1.02 }}
       whileTap={{ scale: disabled || loading ? 1 : 0.98 }}
       className={cn(
