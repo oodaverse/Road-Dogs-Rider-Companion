@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+:root {
+  --navy-50: #e6eaf0;
+  --navy-100: #c4ccd9;
+  --navy-200: #9eabc2;
+  --navy-300: #7889ab;
+  --navy-400: #5b6d99;
+  --navy-500: #3e5187;
+  --navy-600: #2d3e6b;
+  --navy-700: #1e2d52;
+  --navy-800: #0f1a33;
+  --navy-900: #080d1a;
+  --black: #000000;
+  --dark-bg: #0a0e17;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background-color: var(--dark-bg);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Navy color utilities */
+.bg-navy-50 { background-color: var(--navy-50); }
+.bg-navy-100 { background-color: var(--navy-100); }
+.bg-navy-200 { background-color: var(--navy-200); }
+.bg-navy-300 { background-color: var(--navy-300); }
+.bg-navy-400 { background-color: var(--navy-400); }
+.bg-navy-500 { background-color: var(--navy-500); }
+.bg-navy-600 { background-color: var(--navy-600); }
+.bg-navy-700 { background-color: var(--navy-700); }
+.bg-navy-800 { background-color: var(--navy-800); }
+.bg-navy-900 { background-color: var(--navy-900); }
+
+.text-navy-50 { color: var(--navy-50); }
+.text-navy-100 { color: var(--navy-100); }
+.text-navy-200 { color: var(--navy-200); }
+.text-navy-300 { color: var(--navy-300); }
+.text-navy-400 { color: var(--navy-400); }
+.text-navy-500 { color: var(--navy-500); }
+.text-navy-600 { color: var(--navy-600); }
+.text-navy-700 { color: var(--navy-700); }
+.text-navy-800 { color: var(--navy-800); }
+.text-navy-900 { color: var(--navy-900); }
+
+.border-navy-600 { border-color: var(--navy-600); }
+.border-navy-700 { border-color: var(--navy-700); }
+
+.from-navy-700 { --tw-gradient-from: var(--navy-700); }
+.from-navy-800 { --tw-gradient-from: var(--navy-800); }
+.from-navy-900 { --tw-gradient-from: var(--navy-900); }
+.to-navy-700 { --tw-gradient-to: var(--navy-700); }
+.to-navy-800 { --tw-gradient-to: var(--navy-800); }
+.to-navy-900 { --tw-gradient-to: var(--navy-900); }
+.via-navy-800 { --tw-gradient-via: var(--navy-800); }
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
