@@ -77,7 +77,7 @@ export function ApplicationForm() {
     setFiles((prev) => ({ ...prev, [field]: file }));
   };
 
-  const validateCurrentStep = async () => {
+  const validateCurrentStep = async (): Promise<boolean> => {
     const currentSchema = stepSchemas[currentStep - 1];
     const values = methods.getValues();
     
@@ -86,26 +86,39 @@ export function ApplicationForm() {
       return true;
     } catch (error) {
       // Trigger validation to show errors
-      const fieldsToValidate = Object.keys(currentSchema.shape);
-      for (const field of fieldsToValidate) {
-        await methods.trigger(field as keyof FullApplicationData);
+      if (currentSchema.shape) {
+        const fieldsToValidate = Object.keys(currentSchema.shape);
+        await Promise.all(
+          fieldsToValidate.map((field) =>
+            methods.trigger(field as keyof FullApplicationData)
+          )
+        );
       }
       return false;
     }
   };
 
-  const nextStep = async () => {
-    const isValid = await validateCurrentStep();
-    if (isValid && currentStep < STEPS.length) {
-      setCurrentStep((prev) => prev + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  const nextStep = async (): Promise<void> => {
+    try {
+      const isValid = await validateCurrentStep();
+      if (isValid && currentStep < STEPS.length) {
+        setCurrentStep((prev) => prev + 1);
+        // Use requestAnimationFrame for smoother scroll on mobile
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    } catch (error) {
+      console.error('Validation error:', error);
     }
   };
 
-  const prevStep = () => {
+  const prevStep = (): void => {
     if (currentStep > 1) {
       setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
   };
 
@@ -212,7 +225,7 @@ export function ApplicationForm() {
             A confirmation email has been sent to your registered email address.
           </p>
           <Button
-            onClick={() => window.location.href = '/'}
+            onClick={() => { window.location.href = '/'; }}
             className="mt-6 sm:mt-8"
             variant="primary"
           >

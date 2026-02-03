@@ -39,9 +39,27 @@
   box-sizing: border-box;
 }
 
+/* Ensure proper touch handling on mobile devices */
+html {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   background-color: var(--dark-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Touch-friendly button styles */
+button, 
+[role="button"],
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Elegant Script Font for brand - Sweet Apricot style */

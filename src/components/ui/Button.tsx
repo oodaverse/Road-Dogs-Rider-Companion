@@ -3,6 +3,7 @@
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
+import { useState, useCallback } from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -14,14 +15,14 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
-  onClick?: () => void | Promise<void>;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
 }
 
 export function Button({
   children,
   variant = 'primary',
   size = 'md',
-  loading = false,
+  loading: externalLoading = false,
   icon,
   iconPosition = 'right',
   className,
@@ -29,6 +30,10 @@ export function Button({
   type = 'button',
   onClick,
 }: ButtonProps) {
+  const [internalLoading, setInternalLoading] = useState(false);
+  const isLoading = externalLoading || internalLoading;
+  const isDisabled = disabled || isLoading;
+
   const variants = {
     primary:
       'bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 border border-yellow-500/30',
@@ -46,28 +51,58 @@ export function Button({
     lg: 'px-8 py-4 text-lg',
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (onClick && !disabled && !loading) {
-      onClick();
+  const handleClick = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Prevent double-clicks and rapid taps
+    if (isDisabled) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
     }
-  };
+
+    if (onClick) {
+      try {
+        setInternalLoading(true);
+        const result = onClick(e);
+        // Handle async onClick
+        if (result instanceof Promise) {
+          await result;
+        }
+      } catch (error) {
+        console.error('Button click error:', error);
+      } finally {
+        setInternalLoading(false);
+      }
+    }
+  }, [onClick, isDisabled]);
+
+  // Handle touch events for better mobile support
+  const handleTouchEnd = useCallback((e: React.TouchEvent<HTMLButtonElement>) => {
+    // Prevent ghost clicks on mobile
+    if (type === 'button') {
+      e.preventDefault();
+    }
+  }, [type]);
 
   return (
     <motion.button
       type={type}
       onClick={handleClick}
-      whileHover={{ scale: disabled || loading ? 1 : 1.02 }}
-      whileTap={{ scale: disabled || loading ? 1 : 0.98 }}
+      onTouchEnd={handleTouchEnd}
+      whileHover={isDisabled ? undefined : { scale: 1.02 }}
+      whileTap={isDisabled ? undefined : { scale: 0.98 }}
       className={cn(
         'rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2',
+        'touch-manipulation select-none',
         variants[variant],
         sizes[size],
-        (disabled || loading) && 'opacity-50 cursor-not-allowed',
+        isDisabled && 'opacity-50 cursor-not-allowed pointer-events-auto',
         className
       )}
-      disabled={disabled || loading}
+      disabled={isDisabled}
+      aria-disabled={isDisabled}
+      style={{ WebkitTapHighlightColor: 'transparent' }}
     >
-      {loading ? (
+      {isLoading ? (
         <>
           <Loader2 className="w-5 h-5 animate-spin" />
           Processing...

@@ -338,52 +338,6 @@ export function FeaturesSection() {
       </div>
     </section>
   );
-            ★ Why Choose Us ★
-          </motion.p>
-          <motion.h2
-            variants={fadeInUp}
-            className="text-4xl md:text-6xl font-brand gradient-text mb-6"
-          >
-            The Road Dog Difference
-          </motion.h2>
-          <motion.div variants={fadeInUp} className="divider-gold w-32 mx-auto mb-8" />
-          <motion.p
-            variants={fadeInUp}
-            className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed"
-          >
-            We&apos;re not just connecting riders and drivers—we&apos;re building a <span className="text-yellow-400 font-semibold">community</span> based on safety, respect, and shared adventure.
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              variants={fadeInUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className={`card-premium rounded-2xl p-8 hover:shadow-2xl ${feature.glow} transition-all duration-300`}
-            >
-              <div
-                className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}
-              >
-                <feature.icon className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-yellow-400 mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-200">{feature.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
 }
 
 export function ProcessSection() {
