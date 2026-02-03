@@ -138,29 +138,39 @@ export function ApplicationForm() {
     }
   };
 
-  const uploadFile = async (file: File, folder: string): Promise<string | null> => {
+  type UploadResult = { url: string | null; error: string | null };
+
+  const uploadFile = async (file: File, folder: string): Promise<UploadResult> => {
     try {
       const fileExt = file.name.split('.').pop();
+      if (!fileExt) {
+        return { url: null, error: 'File extension missing.' };
+      }
       const fileName = `${uuidv4()}.${fileExt}`;
       const filePath = `${folder}/${fileName}`;
 
       const { error } = await supabase.storage
         .from('rider-documents')
-        .upload(filePath, file);
+        .upload(filePath, file, {
+          upsert: true,
+          cacheControl: '3600',
+          contentType: file.type || 'application/octet-stream',
+        });
 
       if (error) {
         console.error('Upload error:', error);
-        return null;
+        return { url: null, error: error.message || 'Upload failed.' };
       }
 
       const { data: urlData } = supabase.storage
         .from('rider-documents')
         .getPublicUrl(filePath);
 
-      return urlData.publicUrl;
+      return { url: urlData.publicUrl, error: null };
     } catch (error) {
       console.error('Upload error:', error);
-      return null;
+      const message = error instanceof Error ? error.message : 'Upload failed.';
+      return { url: null, error: message };
     }
   };
 
@@ -187,13 +197,28 @@ export function ApplicationForm() {
       let liabilityInsuranceDocUrl = null;
 
       if (files.id_document) {
-        idDocumentUrl = await uploadFile(files.id_document, 'id-documents');
+        const result = await uploadFile(files.id_document, 'id-documents');
+        if (result.error) {
+          setSubmitError(`Government ID upload failed. ${result.error}`);
+          return;
+        }
+        idDocumentUrl = result.url;
       }
       if (files.health_insurance_document) {
-        healthInsuranceDocUrl = await uploadFile(files.health_insurance_document, 'health-insurance');
+        const result = await uploadFile(files.health_insurance_document, 'health-insurance');
+        if (result.error) {
+          setSubmitError(`Health insurance upload failed. ${result.error}`);
+          return;
+        }
+        healthInsuranceDocUrl = result.url;
       }
       if (files.liability_insurance_document) {
-        liabilityInsuranceDocUrl = await uploadFile(files.liability_insurance_document, 'liability-insurance');
+        const result = await uploadFile(files.liability_insurance_document, 'liability-insurance');
+        if (result.error) {
+          setSubmitError(`Liability insurance upload failed. ${result.error}`);
+          return;
+        }
+        liabilityInsuranceDocUrl = result.url;
       }
 
       // Calculate age from DOB
