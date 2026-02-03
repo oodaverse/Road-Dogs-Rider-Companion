@@ -82,19 +82,39 @@ ON CONFLICT (id) DO NOTHING;
 
 -- Storage policies for rider-documents bucket
 -- Allow anyone to upload files (for public form submission)
+DROP POLICY IF EXISTS "Anyone can upload documents" ON storage.objects;
 CREATE POLICY "Anyone can upload documents" ON storage.objects
   FOR INSERT WITH CHECK (bucket_id = 'rider-documents');
 
 -- Allow anyone to read files (for admin viewing)
+DROP POLICY IF EXISTS "Anyone can view documents" ON storage.objects;
 CREATE POLICY "Anyone can view documents" ON storage.objects
   FOR SELECT USING (bucket_id = 'rider-documents');
+
+-- Allow updates/removals if needed (optional)
+DROP POLICY IF EXISTS "Anyone can update documents" ON storage.objects;
+CREATE POLICY "Anyone can update documents" ON storage.objects
+  FOR UPDATE USING (bucket_id = 'rider-documents') WITH CHECK (bucket_id = 'rider-documents');
+DROP POLICY IF EXISTS "Anyone can delete documents" ON storage.objects;
+CREATE POLICY "Anyone can delete documents" ON storage.objects
+  FOR DELETE USING (bucket_id = 'rider-documents');
 
 -- Set up Row Level Security (RLS)
 ALTER TABLE rider_applications ENABLE ROW LEVEL SECURITY;
 
+-- Drop existing policies to avoid duplication errors
+DROP POLICY IF EXISTS "Anyone can submit an application" ON rider_applications;
+DROP POLICY IF EXISTS "Anyone can read applications" ON rider_applications;
+DROP POLICY IF EXISTS "Service role can read all applications" ON rider_applications;
+DROP POLICY IF EXISTS "Service role can update applications" ON rider_applications;
+
 -- Policy to allow anyone to insert (for public form submission)
 CREATE POLICY "Anyone can submit an application" ON rider_applications
   FOR INSERT WITH CHECK (true);
+
+-- Allow public read if needed (optional)
+CREATE POLICY "Anyone can read applications" ON rider_applications
+  FOR SELECT USING (true);
 
 -- Policy to allow service role to read all applications (for admin panel)
 CREATE POLICY "Service role can read all applications" ON rider_applications
@@ -105,9 +125,9 @@ CREATE POLICY "Service role can update applications" ON rider_applications
   FOR UPDATE USING (true);
 
 -- Create index for faster queries
-CREATE INDEX idx_rider_applications_status ON rider_applications(application_status);
-CREATE INDEX idx_rider_applications_created ON rider_applications(created_at DESC);
-CREATE INDEX idx_rider_applications_email ON rider_applications(email);
+CREATE INDEX IF NOT EXISTS idx_rider_applications_status ON rider_applications(application_status);
+CREATE INDEX IF NOT EXISTS idx_rider_applications_created ON rider_applications(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_rider_applications_email ON rider_applications(email);
 
 -- Function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -117,6 +137,9 @@ BEGIN
   RETURN NEW;
 END;
 $$ language 'plpgsql';
+
+-- Drop trigger if exists to make this idempotent
+DROP TRIGGER IF EXISTS update_rider_applications_updated_at ON rider_applications;
 
 -- Trigger to auto-update updated_at
 CREATE TRIGGER update_rider_applications_updated_at
