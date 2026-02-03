@@ -75,19 +75,10 @@ export function Button({
     }
   }, [onClick, isDisabled]);
 
-  // Handle touch events for better mobile support
-  const handleTouchEnd = useCallback((e: React.TouchEvent<HTMLButtonElement>) => {
-    // Prevent ghost clicks on mobile
-    if (type === 'button') {
-      e.preventDefault();
-    }
-  }, [type]);
-
   return (
     <motion.button
       type={type}
       onClick={handleClick}
-      onTouchEnd={handleTouchEnd}
       whileHover={isDisabled ? undefined : { scale: 1.02 }}
       whileTap={isDisabled ? undefined : { scale: 0.98 }}
       className={cn(
