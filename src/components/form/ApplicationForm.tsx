@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -53,6 +53,7 @@ export function ApplicationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
   const [files, setFiles] = useState<Files>({});
 
   const methods = useForm<FullApplicationData>({
@@ -76,6 +77,21 @@ export function ApplicationForm() {
   const handleFileChange = (field: string, file: File | null) => {
     setFiles((prev) => ({ ...prev, [field]: file }));
   };
+
+  useEffect(() => {
+    if (submitError) {
+      setSubmitError(null);
+    }
+  }, [currentStep]);
+
+  useEffect(() => {
+    const subscription = methods.watch(() => {
+      if (submitError) {
+        setSubmitError(null);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [methods, submitError]);
 
   const validateCurrentStep = async (): Promise<boolean> => {
     const currentSchema = stepSchemas[currentStep - 1];
@@ -148,11 +164,23 @@ export function ApplicationForm() {
     }
   };
 
+  const normalizeOptionalDate = (value?: string) => (value && value.length > 0 ? value : null);
+
   const onSubmit = async (data: FullApplicationData) => {
     setIsSubmitting(true);
     setSubmitError(null);
+    setSubmitAttempted(true);
 
     try {
+      const missingFiles: string[] = [];
+      if (!files.id_document) missingFiles.push('Government ID');
+      if (!files.health_insurance_document) missingFiles.push('Health Insurance Proof');
+
+      if (missingFiles.length > 0) {
+        setSubmitError(`Please upload: ${missingFiles.join(', ')}.`);
+        return;
+      }
+
       // Upload files
       let idDocumentUrl = null;
       let healthInsuranceDocUrl = null;
@@ -171,6 +199,11 @@ export function ApplicationForm() {
       // Calculate age from DOB
       const age = calculateAge(data.date_of_birth);
 
+      if (!idDocumentUrl || !healthInsuranceDocUrl) {
+        setSubmitError('Document upload failed. Please re-upload your files and try again.');
+        return;
+      }
+
       // Prepare the application data
       const applicationData = {
         ...data,
@@ -178,6 +211,8 @@ export function ApplicationForm() {
         id_document_url: idDocumentUrl,
         health_insurance_document_url: healthInsuranceDocUrl,
         liability_insurance_document_url: liabilityInsuranceDocUrl,
+        liability_insurance_start: normalizeOptionalDate(data.liability_insurance_start),
+        liability_insurance_end: normalizeOptionalDate(data.liability_insurance_end),
         application_status: 'pending',
       };
 
@@ -192,8 +227,9 @@ export function ApplicationForm() {
 
       setIsSubmitted(true);
     } catch (error) {
+      const message = error instanceof Error ? error.message : 'Please try again.';
       console.error('Submission error:', error);
-      setSubmitError('There was an error submitting your application. Please try again.');
+      setSubmitError(`There was an error submitting your application. ${message}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -260,7 +296,7 @@ export function ApplicationForm() {
             </motion.div>
           </AnimatePresence>
 
-          {submitError && (
+          {submitAttempted && submitError && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
