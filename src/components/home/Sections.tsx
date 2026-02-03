@@ -80,15 +80,15 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-20 sm:py-24 md:py-32 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mx-auto max-w-4xl glass border border-yellow-500/30 rounded-3xl px-6 sm:px-10 md:px-14 py-10 md:py-12 shadow-2xl shadow-black/40"
+          className="mx-auto max-w-4xl glass border border-yellow-500/30 rounded-2xl sm:rounded-3xl px-4 sm:px-8 md:px-14 py-6 sm:py-8 md:py-12 shadow-2xl shadow-black/40"
         >
-          <div className="flex flex-col items-center gap-8">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+          <div className="flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
+            <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 md:flex-row md:gap-8">
               {/* Logo */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -96,13 +96,13 @@ export function HeroSection() {
                 transition={{ duration: 0.8 }}
                 className="shrink-0"
               >
-                <div className="logo-emblem w-28 h-28 md:w-36 md:h-36">
+                <div className="logo-emblem w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36">
                   <Image
                     src="/doglogo.jpg"
                     alt="Road Dog Logo"
                     width={144}
                     height={144}
-                    className="rounded-full object-cover"
+                    className="rounded-full object-cover w-full h-full"
                     priority
                   />
                 </div>
@@ -113,15 +113,15 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center gap-3 glass px-6 py-3 rounded-full text-yellow-300 border border-yellow-500/30"
+                className="inline-flex items-center gap-2 sm:gap-3 glass px-4 sm:px-6 py-2 sm:py-3 rounded-full text-yellow-300 border border-yellow-500/30"
               >
                 <motion.div
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Truck className="w-5 h-5" />
+                  <Truck className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.div>
-                <span className="text-sm font-semibold tracking-wide">The Open Road Awaits</span>
+                <span className="text-xs sm:text-sm font-semibold tracking-wide">The Open Road Awaits</span>
               </motion.div>
             </div>
 
@@ -130,7 +130,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-6xl md:text-8xl font-brand gradient-text mb-2 pb-2 text-shadow-gold"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-brand gradient-text mb-1 sm:mb-2 pb-2 text-shadow-gold"
                 style={{ paddingBottom: '0.1em' }}
               >
                 Road Dog
@@ -140,7 +140,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-4xl md:text-5xl font-brand text-red-500 mb-8 text-shadow-red"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-brand text-red-500 mb-4 sm:mb-6 md:mb-8 text-shadow-red"
               >
                 Companion
               </motion.p>
@@ -150,7 +150,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed"
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed px-2"
             >
               Join our network of companion riders and experience the adventure of
               long-haul trucking across America. <span className="text-yellow-400">Safe</span>, <span className="text-yellow-400">vetted</span>, <span className="text-yellow-400">professional</span>.
@@ -161,16 +161,16 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center px-2"
           >
             <Link
               href="/apply"
-              className="btn-premium inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-bold text-lg group"
+              className="btn-premium inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl font-bold text-sm sm:text-base md:text-lg group"
             >
               Apply as Rider
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <button className="glass inline-flex items-center justify-center gap-3 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all border-2 border-yellow-500/40 hover:border-yellow-400/60 hover:scale-105">
+            <button className="glass inline-flex items-center justify-center gap-2 sm:gap-3 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl font-bold text-sm sm:text-base md:text-lg hover:bg-white/20 transition-all border-2 border-yellow-500/40 hover:border-yellow-400/60 hover:scale-105">
               Learn More
             </button>
           </motion.div>
@@ -206,13 +206,13 @@ export function HeroSection() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="w-8 h-14 border-2 border-yellow-400/50 rounded-full flex items-start justify-center p-2 backdrop-blur-sm">
+        <div className="w-6 h-10 sm:w-8 sm:h-14 border-2 border-yellow-400/50 rounded-full flex items-start justify-center p-1.5 sm:p-2 backdrop-blur-sm">
           <motion.div
-            animate={{ y: [0, 16, 0] }}
+            animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-2 h-2 bg-gradient-to-b from-yellow-400 to-red-500 rounded-full"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-b from-yellow-400 to-red-500 rounded-full"
           />
         </div>
       </motion.div>
@@ -273,25 +273,71 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-gray-900 via-gray-900 to-black relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-gray-900 via-gray-900 to-black relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative">
         <motion.div
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16 md:mb-20"
         >
           <motion.p
             variants={fadeInUp}
-            className="text-yellow-400 font-bold tracking-widest mb-4 uppercase text-sm"
+            className="text-yellow-400 font-bold tracking-widest mb-3 sm:mb-4 uppercase text-xs sm:text-sm"
           >
+            ★ Why Choose Us ★
+          </motion.p>
+          <motion.h2
+            variants={fadeInUp}
+            className="text-3xl sm:text-4xl md:text-6xl font-brand gradient-text mb-4 sm:mb-6"
+          >
+            The Road Dog Difference
+          </motion.h2>
+          <motion.div variants={fadeInUp} className="divider-gold w-24 sm:w-32 mx-auto mb-6 sm:mb-8" />
+          <motion.p
+            variants={fadeInUp}
+            className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed px-2"
+          >
+            We&apos;re not just connecting riders and drivers—we&apos;re building a <span className="text-yellow-400 font-semibold">community</span> based on safety, respect, and shared adventure.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
+        >
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className={`card-premium rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 hover:shadow-2xl ${feature.glow} transition-all duration-300`}
+            >
+              <div
+                className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${feature.color} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg`}
+              >
+                <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mb-2 sm:mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-gray-200 text-sm sm:text-base">{feature.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
             ★ Why Choose Us ★
           </motion.p>
           <motion.h2
@@ -373,32 +419,32 @@ export function ProcessSection() {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
       {/* Road line decoration */}
       <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-500/0 via-yellow-500/30 to-yellow-500/0 hidden lg:block" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative">
         <motion.div
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16 md:mb-20"
         >
           <motion.p
             variants={fadeInUp}
-            className="text-yellow-400 font-bold tracking-widest mb-4 uppercase text-sm"
+            className="text-yellow-400 font-bold tracking-widest mb-3 sm:mb-4 uppercase text-xs sm:text-sm"
           >
             ★ How It Works ★
           </motion.p>
           <motion.h2
             variants={fadeInUp}
-            className="text-4xl md:text-6xl font-brand gradient-text mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl font-brand gradient-text mb-4 sm:mb-6"
           >
             Your Journey Starts Here
           </motion.h2>
-          <motion.div variants={fadeInUp} className="divider-gold w-32 mx-auto mb-8" />
-          <motion.p variants={fadeInUp} className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
+          <motion.div variants={fadeInUp} className="divider-gold w-24 sm:w-32 mx-auto mb-6 sm:mb-8" />
+          <motion.p variants={fadeInUp} className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed px-2">
             Getting started is easy. Follow these simple steps to become a <span className="text-yellow-400 font-semibold">Road Dog</span> companion rider.
           </motion.p>
         </motion.div>
@@ -408,7 +454,7 @@ export function ProcessSection() {
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
         >
           {steps.map((item, index) => (
             <motion.div
@@ -417,17 +463,17 @@ export function ProcessSection() {
               whileHover={{ y: -8 }}
               className="relative"
             >
-              <div className="card-premium rounded-2xl p-8 h-full group hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-6xl font-bold bg-gradient-to-br from-yellow-400/30 to-red-500/20 bg-clip-text text-transparent">
+              <div className="card-premium rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 h-full group hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
+                <div className="flex items-center justify-between mb-4 sm:mb-6">
+                  <span className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-br from-yellow-400/30 to-red-500/20 bg-clip-text text-transparent">
                     {item.step}
                   </span>
-                  <span className="text-3xl">{item.icon}</span>
+                  <span className="text-2xl sm:text-3xl">{item.icon}</span>
                 </div>
-                <h3 className="text-xl font-bold text-yellow-400 mt-4 mb-3 group-hover:text-yellow-300 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mt-3 sm:mt-4 mb-2 sm:mb-3 group-hover:text-yellow-300 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-gray-200 leading-relaxed">{item.description}</p>
+                <p className="text-gray-200 leading-relaxed text-sm sm:text-base">{item.description}</p>
               </div>
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 z-10">
@@ -457,33 +503,33 @@ export function RequirementsSection() {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-black via-gray-900 to-gray-900 relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black via-gray-900 to-gray-900 relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-yellow-400 font-bold tracking-widest mb-4 uppercase text-sm">★ Requirements ★</p>
-            <h2 className="text-4xl md:text-6xl font-brand gradient-text mb-6">
+            <p className="text-yellow-400 font-bold tracking-widest mb-3 sm:mb-4 uppercase text-xs sm:text-sm">★ Requirements ★</p>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-brand gradient-text mb-4 sm:mb-6">
               What We Look For
             </h2>
-            <div className="divider-gold w-24 mb-8" />
-            <p className="text-gray-300 mb-10 text-lg leading-relaxed">
+            <div className="divider-gold w-20 sm:w-24 mb-6 sm:mb-8" />
+            <p className="text-gray-300 mb-6 sm:mb-10 text-sm sm:text-base md:text-lg leading-relaxed">
               To ensure the <span className="text-yellow-400 font-semibold">safety</span> and <span className="text-yellow-400 font-semibold">quality</span> of our program, all rider applicants
               must meet the following requirements. These standards help us maintain
               a trusted community.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {requirements.map((req, index) => (
                 <motion.div
                   key={index}
@@ -492,10 +538,10 @@ export function RequirementsSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ x: 5 }}
-                  className="flex items-center gap-4 glass-light p-4 rounded-xl hover:border-yellow-500/50 transition-all"
+                  className="flex items-center gap-3 sm:gap-4 glass-light p-3 sm:p-4 rounded-lg sm:rounded-xl hover:border-yellow-500/50 transition-all"
                 >
-                  <span className="text-2xl">{req.icon}</span>
-                  <span className="text-yellow-400 font-medium">{req.text}</span>
+                  <span className="text-xl sm:text-2xl">{req.icon}</span>
+                  <span className="text-yellow-400 font-medium text-sm sm:text-base">{req.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -508,29 +554,29 @@ export function RequirementsSection() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-red-600 via-red-700 to-red-800 rounded-3xl p-10 md:p-14 border-2 border-yellow-500/30 shadow-2xl shadow-red-500/20 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-red-600 via-red-700 to-red-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-14 border-2 border-yellow-500/30 shadow-2xl shadow-red-500/20 relative overflow-hidden">
               {/* Decorative gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent pointer-events-none" />
               
-              <h3 className="text-3xl font-brand text-yellow-400 mb-4 relative">
+              <h3 className="text-2xl sm:text-3xl font-brand text-yellow-400 mb-3 sm:mb-4 relative">
                 Ready to Get Started?
               </h3>
-              <p className="text-red-100 mb-10 text-lg leading-relaxed relative">
+              <p className="text-red-100 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg leading-relaxed relative">
                 Join hundreds of riders who have already experienced the adventure
                 of cross-country trucking. Apply today and start your journey!
               </p>
               <Link
                 href="/apply"
-                className="relative inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-10 py-5 rounded-xl font-bold text-lg hover:from-yellow-300 hover:to-yellow-400 transition-all shadow-lg shadow-yellow-500/30 hover:shadow-xl hover:shadow-yellow-500/40 hover:scale-105 group"
+                className="relative inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl font-bold text-sm sm:text-base md:text-lg hover:from-yellow-300 hover:to-yellow-400 transition-all shadow-lg shadow-yellow-500/30 hover:shadow-xl hover:shadow-yellow-500/40 hover:scale-105 group"
               >
                 Start Application
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
 
-            {/* Decorative elements */}
-            <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-black to-gray-900 rounded-3xl -z-10 border border-yellow-500/20" />
-            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-3xl -z-10 shadow-xl shadow-yellow-500/30" />
+            {/* Decorative elements - hidden on mobile */}
+            <div className="hidden sm:block absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-black to-gray-900 rounded-3xl -z-10 border border-yellow-500/20" />
+            <div className="hidden sm:block absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-3xl -z-10 shadow-xl shadow-yellow-500/30" />
           </motion.div>
         </div>
       </div>
@@ -540,7 +586,7 @@ export function RequirementsSection() {
 
 export function CTASection() {
   return (
-    <section className="py-32 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
       {/* Background Animations */}
       <motion.div
         animate={{ rotate: 360 }}
@@ -553,8 +599,8 @@ export function CTASection() {
         className="absolute -bottom-1/2 -left-1/4 w-[800px] h-[800px] bg-gradient-to-br from-red-500/5 to-yellow-500/5 rounded-full"
       />
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Floating particles - hidden on mobile */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
@@ -576,7 +622,7 @@ export function CTASection() {
         ))}
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -587,40 +633,40 @@ export function CTASection() {
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative inline-block mb-10"
+            className="relative inline-block mb-6 sm:mb-10"
           >
             <div className="absolute inset-0 bg-yellow-400/30 blur-2xl rounded-full" />
-            <Truck className="w-20 h-20 text-yellow-400 relative" />
+            <Truck className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 text-yellow-400 relative" />
           </motion.div>
 
-          <h2 className="text-5xl md:text-7xl font-brand gradient-text mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-brand gradient-text mb-4 sm:mb-6 md:mb-8">
             Your Adventure Awaits
           </h2>
-          <div className="divider-gold w-24 mx-auto mb-8" />
-          <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed">
+          <div className="divider-gold w-20 sm:w-24 mx-auto mb-6 sm:mb-8" />
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-10 md:mb-14 max-w-2xl mx-auto leading-relaxed px-2">
             Don&apos;t just dream about the open road—<span className="text-yellow-400 font-semibold">experience it</span>. Join Road Dog
             today and discover America from behind the wheel of an 18-wheeler.
           </p>
           <Link
             href="/apply"
-            className="btn-premium inline-flex items-center gap-4 px-14 py-6 rounded-2xl font-bold text-xl group"
+            className="btn-premium inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-8 sm:px-10 md:px-14 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg lg:text-xl group"
           >
             Apply Now — It&apos;s Free
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
           </Link>
           
           {/* Trust indicators */}
-          <div className="mt-16 flex flex-wrap justify-center gap-8 text-gray-400">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
+          <div className="mt-10 sm:mt-12 md:mt-16 flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 text-gray-400 text-xs sm:text-sm md:text-base">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
               <span>Free to Apply</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Shield className="w-5 h-5 text-yellow-400" />
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
               <span>Verified & Safe</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 text-yellow-400" />
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
               <span>500+ Active Riders</span>
             </div>
           </div>

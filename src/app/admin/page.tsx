@@ -206,7 +206,7 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-3 sm:px-4 relative overflow-hidden">
         {/* Background decorations */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
@@ -214,43 +214,43 @@ export default function AdminPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl shadow-2xl p-10 w-full max-w-md border border-yellow-500/20 relative"
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border border-yellow-500/20 relative"
         >
-          <div className="text-center mb-10">
-            <div className="logo-emblem w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-              <Lock className="w-10 h-10 text-white" />
+          <div className="text-center mb-6 sm:mb-8 md:mb-10">
+            <div className="logo-emblem w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+              <Lock className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
             </div>
-            <h1 className="text-3xl font-brand gradient-text">Admin Portal</h1>
-            <p className="text-gray-400 mt-3 font-medium">Road Dog Companion</p>
+            <h1 className="text-2xl sm:text-3xl font-brand gradient-text">Admin Portal</h1>
+            <p className="text-gray-400 mt-2 sm:mt-3 font-medium text-sm sm:text-base">Road Dog Companion</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-4 sm:space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-2">Username</label>
+              <label className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1.5 sm:mb-2">Username</label>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-5 py-4 rounded-xl bg-gray-700/50 border border-yellow-500/20 focus:ring-2 focus:ring-yellow-500/30 focus:border-yellow-500/50 outline-none text-white placeholder-gray-500"
+                className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-gray-700/50 border border-yellow-500/20 focus:ring-2 focus:ring-yellow-500/30 focus:border-yellow-500/50 outline-none text-white placeholder-gray-500 text-sm sm:text-base"
                 placeholder="Enter username"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-2">Password</label>
+              <label className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1.5 sm:mb-2">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-5 py-4 rounded-xl bg-gray-700/50 border border-yellow-500/20 focus:ring-2 focus:ring-yellow-500/30 focus:border-yellow-500/50 outline-none text-white placeholder-gray-500"
+                className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-gray-700/50 border border-yellow-500/20 focus:ring-2 focus:ring-yellow-500/30 focus:border-yellow-500/50 outline-none text-white placeholder-gray-500 text-sm sm:text-base"
                 placeholder="Enter password"
               />
             </div>
             {authError && (
-              <p className="text-red-400 text-sm text-center font-medium">{authError}</p>
+              <p className="text-red-400 text-xs sm:text-sm text-center font-medium">{authError}</p>
             )}
             <button
               type="submit"
-              className="btn-premium w-full py-4 rounded-xl font-bold text-lg"
+              className="btn-premium w-full py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg"
             >
               Login to Dashboard
             </button>
@@ -261,23 +261,23 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gray-900 overflow-x-hidden">
       {/* Header */}
       <header className="bg-black border-b border-yellow-500/30 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-r from-red-600 to-red-700 p-2 rounded-lg border border-yellow-500/50">
-                <Truck className="w-6 h-6 text-white" />
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-14 sm:h-16">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="bg-gradient-to-r from-red-600 to-red-700 p-1.5 sm:p-2 rounded-lg border border-yellow-500/50">
+                <Truck className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
               </div>
               <div>
-                <h1 className="font-bold text-yellow-400">Road Dog Admin</h1>
-                <p className="text-xs text-gray-400">Application Management</p>
+                <h1 className="font-bold text-yellow-400 text-sm sm:text-base">Road Dog Admin</h1>
+                <p className="text-[10px] sm:text-xs text-gray-400 hidden sm:block">Application Management</p>
               </div>
             </div>
             <button
               onClick={() => setIsAuthenticated(false)}
-              className="text-gray-300 hover:text-yellow-400 text-sm font-medium"
+              className="text-gray-300 hover:text-yellow-400 text-xs sm:text-sm font-medium"
             >
               Logout
             </button>
@@ -285,9 +285,9 @@ export default function AdminPage() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
           {[
             { label: 'Total Applications', value: stats.total, icon: Users, color: 'from-blue-500 to-blue-600' },
             { label: 'Pending Review', value: stats.pending, icon: Clock, color: 'from-amber-500 to-amber-600' },
@@ -299,15 +299,15 @@ export default function AdminPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-gray-800 rounded-xl p-6 shadow-sm border border-yellow-500/20"
+              className="bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-yellow-500/20"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">{stat.label}</p>
-                  <p className="text-3xl font-bold text-white mt-1">{stat.value}</p>
+                  <p className="text-gray-400 text-[10px] sm:text-xs md:text-sm truncate">{stat.label}</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white mt-0.5 sm:mt-1">{stat.value}</p>
                 </div>
-                <div className={`bg-gradient-to-r ${stat.color} p-3 rounded-lg`}>
-                  <stat.icon className="w-6 h-6 text-white" />
+                <div className={`bg-gradient-to-r ${stat.color} p-2 sm:p-2.5 md:p-3 rounded-lg hidden sm:block`}>
+                  <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
                 </div>
               </div>
             </motion.div>
@@ -315,24 +315,24 @@ export default function AdminPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800 rounded-xl p-4 shadow-sm border border-yellow-500/20 mb-6">
-          <div className="flex flex-col sm:flex-row gap-4">
+        <div className="bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-yellow-500/20 mb-4 sm:mb-6">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search by name or email..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-700 bg-gray-900 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none"
+                className="w-full pl-9 sm:pl-10 pr-4 py-2 text-sm sm:text-base rounded-lg border border-gray-700 bg-gray-900 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none"
               />
             </div>
             <div className="flex gap-2">
-              <div className="relative">
+              <div className="relative flex-1 sm:flex-none">
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value as ApplicationStatus)}
-                  className="appearance-none bg-gray-900 text-white px-4 py-2 pr-10 rounded-lg border border-gray-700 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none cursor-pointer"
+                  className="appearance-none w-full sm:w-auto bg-gray-900 text-white px-3 sm:px-4 py-2 pr-8 sm:pr-10 rounded-lg border border-gray-700 focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none cursor-pointer text-sm sm:text-base"
                 >
                   <option value="all">All Status</option>
                   <option value="pending">Pending</option>
@@ -347,24 +347,24 @@ export default function AdminPage() {
                 className="bg-gray-900 p-2 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
                 title="Refresh"
               >
-                <RefreshCw className={`w-5 h-5 text-gray-300 ${loading ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-300 ${loading ? 'animate-spin' : ''}`} />
               </button>
             </div>
           </div>
         </div>
 
         {/* Applications Table */}
-        <div className="bg-gray-800 rounded-xl shadow-sm border border-yellow-500/20 overflow-hidden">
+        <div className="bg-gray-800 rounded-lg sm:rounded-xl shadow-sm border border-yellow-500/20 overflow-hidden">
           {loading ? (
-            <div className="p-12 text-center">
-              <RefreshCw className="w-8 h-8 text-yellow-400 animate-spin mx-auto mb-4" />
-              <p className="text-gray-300">Loading applications...</p>
+            <div className="p-8 sm:p-12 text-center">
+              <RefreshCw className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 animate-spin mx-auto mb-3 sm:mb-4" />
+              <p className="text-gray-300 text-sm sm:text-base">Loading applications...</p>
             </div>
           ) : filteredApplications.length === 0 ? (
-            <div className="p-12 text-center">
-              <FileText className="w-12 h-12 text-gray-500 mx-auto mb-4" />
-              <p className="text-gray-300">No applications found</p>
-              <p className="text-gray-500 text-sm mt-1">
+            <div className="p-8 sm:p-12 text-center">
+              <FileText className="w-10 h-10 sm:w-12 sm:h-12 text-gray-500 mx-auto mb-3 sm:mb-4" />
+              <p className="text-gray-300 text-sm sm:text-base">No applications found</p>
+              <p className="text-gray-500 text-xs sm:text-sm mt-1">
                 {applications.length === 0
                   ? 'Applications will appear here when submitted'
                   : 'Try adjusting your filters'}
@@ -372,25 +372,25 @@ export default function AdminPage() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead className="bg-gray-900 border-b border-gray-700">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-[10px] sm:text-xs font-semibold text-gray-300 uppercase tracking-wider">
                       Applicant
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-[10px] sm:text-xs font-semibold text-gray-300 uppercase tracking-wider hidden md:table-cell">
                       Contact
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-[10px] sm:text-xs font-semibold text-gray-300 uppercase tracking-wider hidden lg:table-cell">
                       Location
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-[10px] sm:text-xs font-semibold text-gray-300 uppercase tracking-wider">
                       Submitted
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-[10px] sm:text-xs font-semibold text-gray-300 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-4 text-right text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-right text-[10px] sm:text-xs font-semibold text-gray-300 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>

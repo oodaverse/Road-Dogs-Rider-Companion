@@ -191,29 +191,29 @@ export function ApplicationForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="min-h-[60vh] flex items-center justify-center"
+        className="min-h-[60vh] flex items-center justify-center px-3 sm:px-6"
       >
-        <div className="text-center bg-white p-12 rounded-2xl shadow-xl max-w-lg mx-auto">
+        <div className="text-center bg-white p-6 sm:p-8 md:p-12 rounded-xl sm:rounded-2xl shadow-xl max-w-lg mx-auto">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring' }}
           >
-            <CheckCircle className="w-24 h-24 text-green-500 mx-auto mb-6" />
+            <CheckCircle className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-green-500 mx-auto mb-4 sm:mb-6" />
           </motion.div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
             Application Submitted!
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
             Thank you for applying to the Road-Dogs: Rider Companion program.
             We will review your application and contact you within 3-5 business days.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-xs sm:text-sm text-gray-500">
             A confirmation email has been sent to your registered email address.
           </p>
           <Button
             onClick={() => window.location.href = '/'}
-            className="mt-8"
+            className="mt-6 sm:mt-8"
             variant="primary"
           >
             Return to Home
@@ -225,10 +225,10 @@ export function ApplicationForm() {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-4xl mx-auto">
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-4xl mx-auto px-1 sm:px-0">
         <StepIndicator steps={STEPS} currentStep={currentStep} />
 
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mt-8">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 lg:p-12 mt-4 sm:mt-6 md:mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -257,14 +257,15 @@ export function ApplicationForm() {
             </motion.div>
           )}
 
-          <div className="flex justify-between mt-12 pt-6 border-t border-gray-100">
+          <div className="flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4 mt-8 sm:mt-10 md:mt-12 pt-4 sm:pt-6 border-t border-gray-100">
             <Button
               type="button"
               variant="ghost"
               onClick={prevStep}
               disabled={currentStep === 1}
-              icon={<ChevronLeft className="w-5 h-5" />}
+              icon={<ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />}
               iconPosition="left"
+              className="w-full sm:w-auto justify-center"
             >
               Previous
             </Button>
@@ -273,7 +274,8 @@ export function ApplicationForm() {
               <Button
                 type="button"
                 onClick={nextStep}
-                icon={<ChevronRight className="w-5 h-5" />}
+                icon={<ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />}
+                className="w-full sm:w-auto justify-center"
               >
                 Next Step
               </Button>
@@ -281,7 +283,8 @@ export function ApplicationForm() {
               <Button
                 type="submit"
                 loading={isSubmitting}
-                icon={<Send className="w-5 h-5" />}
+                icon={<Send className="w-4 h-4 sm:w-5 sm:h-5" />}
+                className="w-full sm:w-auto justify-center"
               >
                 Submit Application
               </Button>
