@@ -80,7 +80,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-20 sm:py-24 md:py-32 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-20 sm:py-24 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -88,20 +88,20 @@ export function HeroSection() {
           className="mx-auto max-w-4xl glass border border-yellow-500/30 rounded-2xl sm:rounded-3xl px-4 sm:px-8 md:px-14 py-6 sm:py-8 md:py-12 shadow-2xl shadow-black/40"
         >
           <div className="flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
-            <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 md:flex-row md:gap-8">
-              {/* Logo */}
+            <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 md:flex-row md:gap-8 relative w-full">
+              {/* Logo - positioned to the left */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
-                className="shrink-0"
+                className="shrink-0 md:absolute md:left-[calc(288px+2rem+50px)] md:top-1/2 md:-translate-y-1/2 md:-translate-x-full"
               >
-                <div className="logo-emblem w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36">
+                <div className="logo-emblem w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72">
                   <Image
                     src="/doglogo.jpg"
                     alt="Road Dog Logo"
-                    width={144}
-                    height={144}
+                    width={288}
+                    height={288}
                     className="rounded-full object-cover w-full h-full"
                     priority
                   />
@@ -125,13 +125,13 @@ export function HeroSection() {
               </motion.div>
             </div>
 
-            <div>
+            <div className="pt-2">
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-brand gradient-text mb-1 sm:mb-2 pb-2 text-shadow-gold"
-                style={{ paddingBottom: '0.1em' }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-brand gradient-text mb-1 sm:mb-2 pb-2 text-shadow-gold text-center leading-tight"
+                style={{ paddingBottom: '0.1em', paddingTop: '0.15em' }}
               >
                 Road Dog
               </motion.h1>
@@ -140,7 +140,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-brand text-red-500 mb-4 sm:mb-6 md:mb-8 text-shadow-red"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-brand text-red-500 mb-4 sm:mb-6 md:mb-8 text-shadow-red text-center"
               >
                 Companion
               </motion.p>
@@ -150,7 +150,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed px-2"
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed px-2 text-center"
             >
               Join our network of companion riders and experience the adventure of
               long-haul trucking across America. <span className="text-yellow-400">Safe</span>, <span className="text-yellow-400">vetted</span>, <span className="text-yellow-400">professional</span>.

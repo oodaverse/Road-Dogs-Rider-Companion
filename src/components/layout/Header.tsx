@@ -13,21 +13,23 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20 md:h-24">
-          <Link href="/" className="flex items-center gap-2 sm:gap-4 group">
-            <motion.div
-              whileHover={{ scale: 1.08, rotate: 3 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="logo-emblem w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16"
-            >
-              <Image
-                src="/doglogo.jpg"
-                alt="Road Dog Logo"
-                width={64}
-                height={64}
-                className="rounded-full object-cover w-full h-full"
-              />
-            </motion.div>
-            <div className="flex flex-col">
+          <div className="flex items-center gap-4 sm:gap-6 md:gap-12 lg:gap-16">
+            <Link href="/" className="group flex-shrink-0">
+              <motion.div
+                whileHover={{ scale: 1.08, rotate: 3 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="logo-emblem w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center"
+              >
+                <Image
+                  src="/doglogo.jpg"
+                  alt="Road Dog Logo"
+                  width={64}
+                  height={64}
+                  className="rounded-full object-cover w-full h-full"
+                />
+              </motion.div>
+            </Link>
+            <Link href="/" className="flex flex-col group flex-shrink-0">
               <motion.span 
                 className="font-brand text-xl sm:text-2xl md:text-3xl lg:text-4xl gradient-text tracking-wide"
                 whileHover={{ scale: 1.02 }}
@@ -37,8 +39,8 @@ export function Header() {
               <span className="font-brand text-sm sm:text-lg md:text-xl lg:text-2xl text-red-500 -mt-1 tracking-wide text-shadow-red">
                 Companion
               </span>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
